@@ -49,7 +49,7 @@
 				<div>
 					<c:out value="${producto.nombre}"/>
 				</div>
-				<a href="incluirEnCarrito?producto=<c:out value="${producto.nombre}"/>"class="btn btn-default">
+				<a href="incluirEnCarrito?producto=<c:out value="${producto.nombre}"/>" class="btn btn-default">
 				<c:out value="${producto.precio}"/> €</a>
 			</div>
 		</div>
