@@ -85,7 +85,7 @@ public class ServletCarrito extends HttpServlet {
 	}
     }
 
-    private String carritoEnHTML(Map<String, Integer> carrito) {
+    /*private String carritoEnHTML(Map<String, Integer> carrito) {
 	String carritoEnHTML = "";
 
 	for (String key : carrito.keySet()) {
@@ -93,5 +93,5 @@ public class ServletCarrito extends HttpServlet {
 		    + " unidades</p>";
 	}
 	return carritoEnHTML;
-    }
+    }*/
 }
