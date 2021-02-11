@@ -18,7 +18,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 <div class="container" id="contenedor-principal">
 	<h2>Vista-Productos</h2>
 	<ul>
-		<c:forEach var="par" items="${productos}">
+		<c:forEach var="par" items="${productosTienda}">
 			<tr>
 				<li>${par.nombre} -${par.precio}€ </li>
 			</tr>

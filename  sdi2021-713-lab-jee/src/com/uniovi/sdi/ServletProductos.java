@@ -39,10 +39,10 @@ public class ServletProductos extends HttpServlet {
 	// llamamos al servicio 
 	ProductosService ps = new ProductosService();
 	// obtenemos la lista de productos de la bbdd
-	List<Producto> productos = ps.getProductos();
+	List<Producto> productosTienda = ps.getProductos();
 	
-	// Retornar la vista con parámetro "productos"
-	request.setAttribute("productos", productos);
+	// Retornar la vista con parámetro "productosTienda"
+	request.setAttribute("productosTienda", productosTienda);
 	getServletContext().getRequestDispatcher("/vista-productos.jsp").forward(request, response);
 	
     }
