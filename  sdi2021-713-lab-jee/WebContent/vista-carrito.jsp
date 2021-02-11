@@ -20,7 +20,10 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 	<ul>
 		<c:forEach var="par" items="${paresCarrito}">
 			<tr>
-				<li>${par.key} -${par.value} </li>
+				<li>${par.key} -${par.value} 
+				<a href="borrarEnCarrito?producto=<c:out value="${par.key}"/>" class="btn btn-default">
+				<c:out value="🗑️ Borrar"/></a></li>
+				
 			</tr>
 		</c:forEach>
 	</ul>
