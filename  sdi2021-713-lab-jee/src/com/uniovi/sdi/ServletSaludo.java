@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class ServletSaludo
  */
-// declara  en  el  inicio  de  la  clase  nos  sirve  para  definir  la  URL  del servlet
+// URL  del servlet
 @WebServlet("/ServletSaludo")
 public class ServletSaludo extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -24,7 +24,6 @@ public class ServletSaludo extends HttpServlet {
      */
     public ServletSaludo() {
 	super();
-	// TODO Auto-generated constructor stub
     }
 
     /**
@@ -63,7 +62,6 @@ public class ServletSaludo extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request,
 	    HttpServletResponse response) throws ServletException, IOException {
-	// generado
 	// se encarga de que responda a peticiones POST
 	doGet(request, response);
     }

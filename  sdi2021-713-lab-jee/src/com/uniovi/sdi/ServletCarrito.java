@@ -1,20 +1,18 @@
 package com.uniovi.sdi;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
-import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class ServletCarrito
  */
+// URL del servlet
 @WebServlet("/incluirEnCarrito") // peticion GET, enlace
 public class ServletCarrito extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -24,7 +22,6 @@ public class ServletCarrito extends HttpServlet {
      */
     public ServletCarrito() {
 	super();
-	// TODO Auto-generated constructor stub
     }
 
     /**
@@ -34,7 +31,6 @@ public class ServletCarrito extends HttpServlet {
     protected void doGet(HttpServletRequest request,
 	    HttpServletResponse response) throws ServletException, IOException {
 	
-	HttpSession session = request.getSession();
 	HashMap<String, Integer> carrito = (HashMap<String, Integer>) request
 		.getSession().getAttribute("carrito");
 	
@@ -69,7 +65,7 @@ public class ServletCarrito extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request,
 	    HttpServletResponse response) throws ServletException, IOException {
-	// TODO Auto-generated method stub
+	// se encarga de que responda a peticiones POST
 	doGet(request, response);
     }
 

@@ -22,13 +22,15 @@
 
 
 <!-- Barra de Navegacion superior -->
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-light" style="background-color: #ffa161;">
 	<div class="container-fluid">
 		<ul class="nav navbar-nav">
-			<li><a href="incluirEnCarrito">Carrito</a></li>
-			<li><a href="login.jsp">Login</a></li>
-			<li><a href="admin.jsp">Administrar productos</a></li>
-			<li><a href="productos">Productos</a></li>
+			<li><a href="productos">🍏Productos</a></li>
+			<li><a href="login.jsp"> 👤Login</a></li>
+			<li><a href="admin.jsp">📋Administrar productos</a></li>
+			<li><a href="comentario.jsp">✏️Comentar</a></li>
+			<li><a href="incluirEnCarrito">🛒Carrito</a></li>
+			<li><a href="blog">BLOG</a></li>
 		</ul>
 		<div class="nav navbar-right">
 			<div class="center-block">

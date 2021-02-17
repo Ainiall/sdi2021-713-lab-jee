@@ -9,12 +9,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class ServletCarrito
+ * Servlet implementation class ServletBorrarCarrito
  */
-@WebServlet("/borrarEnCarrito") // peticion GET, enlace
+// URL del servlet
+@WebServlet("/borrarEnCarrito") 
 public class ServletBorrarCarrito extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -23,7 +23,6 @@ public class ServletBorrarCarrito extends HttpServlet {
      */
     public ServletBorrarCarrito() {
 	super();
-	// TODO Auto-generated constructor stub
     }
 
     /**
@@ -33,7 +32,6 @@ public class ServletBorrarCarrito extends HttpServlet {
     protected void doGet(HttpServletRequest request,
 	    HttpServletResponse response) throws ServletException, IOException {
 	
-	HttpSession session = request.getSession();
 	HashMap<String, Integer> carrito = (HashMap<String, Integer>) request
 		.getSession().getAttribute("carrito");
 	
@@ -46,7 +44,6 @@ public class ServletBorrarCarrito extends HttpServlet {
 	if (producto != null) {
 	    borrarEnCarrito(carrito, producto);
 	}
-	
 	// Retornar la vista con parámetro "carrito"
 	request.setAttribute("paresCarrito", carrito);
 	getServletContext().getRequestDispatcher("/vista-carrito.jsp").forward(request, response);
@@ -59,7 +56,7 @@ public class ServletBorrarCarrito extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request,
 	    HttpServletResponse response) throws ServletException, IOException {
-	// TODO Auto-generated method stub
+	// se encarga de que responda a peticiones POST
 	doGet(request, response);
     }
 
@@ -75,8 +72,7 @@ public class ServletBorrarCarrito extends HttpServlet {
 		carrito.remove(claveProducto);
 	    }
 	} else {
-	    return;
-	    
+	    return; 
 	}
     }
 
