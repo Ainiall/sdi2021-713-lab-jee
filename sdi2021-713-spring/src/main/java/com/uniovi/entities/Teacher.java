@@ -1,8 +1,11 @@
 package com.uniovi.entities;
 
+import javax.persistence.*;
 
+@Entity
 public class Teacher {
-
+    @Id
+    @GeneratedValue
     private Long id;
     private String DNI;
     private String name;
@@ -12,13 +15,14 @@ public class Teacher {
     public Teacher() {
     }
 
-    public Teacher(Long id, String DNI, String name, String surname, String category) {
+    public Teacher(Long id, String DNI, String name, String surname,
+	    String category) {
 	super();
-	this.id= id;
+	this.id = id;
 	this.DNI = DNI;
 	this.name = name;
 	this.surname = surname;
-	this.category= category;
+	this.category = category;
     }
 
     public Long getId() {
@@ -28,13 +32,13 @@ public class Teacher {
     public void setId(Long id) {
 	this.id = id;
     }
-    
-    public String getDNI(){
-        return DNI;
+
+    public String getDNI() {
+	return DNI;
     }
 
-    public void setDNI(String DNI){
-        this.DNI=DNI;
+    public void setDNI(String DNI) {
+	this.DNI = DNI;
     }
 
     public String getName() {
@@ -46,11 +50,11 @@ public class Teacher {
     }
 
     public String getSurname() {
-        return surname;
+	return surname;
     }
-    
+
     public void setSurname(String surname) {
-        this.surname = surname;
+	this.surname = surname;
     }
 
     public String getCategory() {
@@ -63,7 +67,7 @@ public class Teacher {
 
     @Override
     public String toString() {
-        return "Teacher[DNI=" + DNI + ", name=" + name + ", surname="
-            + surname +", category=" + category + "]";
+	return "Teacher[DNI=" + DNI + ", name=" + name + ", surname=" + surname
+		+ ", category=" + category + "]";
     }
 }
