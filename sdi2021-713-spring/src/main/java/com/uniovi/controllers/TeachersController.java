@@ -35,10 +35,10 @@ public class TeachersController {
 	return "redirect:/teacher/add";
     }
 
-    @RequestMapping("/mark/details/{id}")
+    @RequestMapping("/teacher/details/{id}")
     // es una peticion GET
     public String getDetail(Model model, @PathVariable Long id) {
-	model.addAttribute("mark", teachersService.getTeacher(id));
+	model.addAttribute("teacher", teachersService.getTeacher(id));
 	return "teacher/details";
     }
 
