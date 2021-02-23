@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.uniovi.entities.Teacher;
 import com.uniovi.services.TeachersService;
@@ -32,7 +33,7 @@ public class TeachersController {
     // es una peticion POST
     public String setTeacher(@ModelAttribute Teacher teacher) {
 	teachersService.addTeacher(teacher);
-	return "redirect:/teacher/add";
+	return "redirect:/teacher/list";
     }
 
     @RequestMapping("/teacher/details/{id}")
@@ -41,13 +42,27 @@ public class TeachersController {
 	model.addAttribute("teacher", teachersService.getTeacher(id));
 	return "teacher/details";
     }
-
-    @RequestMapping("/teacher/delete/{id}")
+    
+    
+    /*@RequestMapping("/teacher/delete/{id}")
     public String deleteTeacher(@PathVariable Long id) {
 	teachersService.deleteTeacher(id);
-	return "redirect:/teacher/delete";
+	return "redirect:/teacher/list";
+    }*/
+
+    @RequestMapping(value = "/teacher/delete/{id}")
+    public String getDelete(Model model, @PathVariable Long id) {
+	model.addAttribute("teacher", teachersService.getTeacher(id));
+	return "teacher/delete";
     }
 
+    @RequestMapping(value = "/teacher/delete/{id}", method = RequestMethod.POST)
+    public String setDelete(Model model, @PathVariable Long id,
+	    @ModelAttribute Teacher teacher) {
+	teachersService.deleteTeacher(id);
+	return "redirect:/teacher/list/";
+    }
+    
     @RequestMapping(value = "/teacher/edit/{id}")
     public String getEdit(Model model, @PathVariable Long id) {
 	model.addAttribute("teacher", teachersService.getTeacher(id));
@@ -55,10 +70,14 @@ public class TeachersController {
     }
 
     @RequestMapping(value = "/teacher/edit/{id}", method = RequestMethod.POST)
-    public String setEdit(Model model, @PathVariable Long id,
-	    @ModelAttribute Teacher teacher) {
-	teacher.setId(id);
+    public String setEdit( @ModelAttribute Teacher teacher) {
+	Teacher t = teachersService.getTeacher(teacher.getId());
+	t.setName(teacher.getName());
+	t.setSurname(teacher.getSurname());
+	t.setDNI(teacher.getDNI());
+	t.setCategory(teacher.getCategory());
 	teachersService.addTeacher(teacher);
-	return "redirect:/teacher/details/" + id;
+	return "redirect:/teacher/details/" + t.getId();
     }
+    
 }
