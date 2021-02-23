@@ -63,4 +63,12 @@ public class MarksController {
 	marksService.addMark(mark);
 	return "redirect:/mark/details/" + id;
     }
+
+    // ----------- lab 03 -------------
+    @RequestMapping("/mark/list/update")
+    public String updateList(Model model) {
+	model.addAttribute("markList", marksService.getMarks());
+	// no retorna toda la vista, solo el fragmento tableMarks
+	return "mark/list :: tableMarks";
+    }
 }
