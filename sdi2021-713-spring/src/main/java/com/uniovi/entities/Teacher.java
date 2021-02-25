@@ -70,4 +70,5 @@ public class Teacher {
 	return "Teacher[DNI=" + DNI + ", name=" + name + ", surname=" + surname
 		+ ", category=" + category + "]";
     }
+    
 }

@@ -7,10 +7,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.uniovi.entities.Mark;
 import com.uniovi.services.MarksService;
 import com.uniovi.services.UsersService;
+import com.uniovi.validators.MarkFormValidator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 //@RestController // especifica una respuesta con contenido REST
@@ -23,6 +26,9 @@ public class MarksController {
     @Autowired
     private UsersService usersService;
 
+    @Autowired
+    private MarkFormValidator markValidator;
+
     @RequestMapping("/mark/list")
     public String getList(Model model) {
 	model.addAttribute("markList", marksService.getMarks());
@@ -31,7 +37,14 @@ public class MarksController {
 
     @RequestMapping(value = "/mark/add", method = RequestMethod.POST)
     // es una peticion POST
-    public String setMark(@ModelAttribute Mark mark) {
+    public String setMark(@Validated Mark mark, BindingResult result,
+	    Model model) {
+	markValidator.validate(mark, result);
+	if (result.hasErrors()) {
+	    // para que se recargue el desplegable
+	    model.addAttribute("usersList", usersService.getUsers());
+	    return "mark/add";
+	}
 	marksService.addMark(mark);
 	return "redirect:/mark/list";
     }
@@ -60,6 +73,7 @@ public class MarksController {
     @RequestMapping(value = "/mark/add")
     public String getMark(Model model) {
 	model.addAttribute("usersList", usersService.getUsers());
+	model.addAttribute("mark", new Mark());
 	return "mark/add";
     }
 

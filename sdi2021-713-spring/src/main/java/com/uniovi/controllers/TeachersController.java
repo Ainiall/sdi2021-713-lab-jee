@@ -3,20 +3,25 @@ package com.uniovi.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.uniovi.entities.Teacher;
 import com.uniovi.services.TeachersService;
+import com.uniovi.validators.TeacherFormValidator;
 
 @Controller
 public class TeachersController {
 
     @Autowired // Inyectarel servicio
     private TeachersService teachersService;
+    
+    @Autowired
+    private TeacherFormValidator teacherValidator;
 
     @RequestMapping("/teacher/list")
     public String getList(Model model) {
@@ -25,13 +30,18 @@ public class TeachersController {
     }
 
     @RequestMapping(value = "/teacher/add")
-    public String getTeacher() {
+    public String getTeacher(Model model) {
+	model.addAttribute("teacher", new Teacher());
 	return "teacher/add";
     }
 
     @RequestMapping(value = "/teacher/add", method = RequestMethod.POST)
     // es una peticion POST
-    public String setTeacher(@ModelAttribute Teacher teacher) {
+    public String setTeacher(@Validated Teacher teacher, BindingResult result, Model model) {
+	teacherValidator.validate(teacher, result);
+	if(result.hasErrors()) {
+	    return "/teacher/add";
+	}
 	teachersService.addTeacher(teacher);
 	return "redirect:/teacher/list";
     }
