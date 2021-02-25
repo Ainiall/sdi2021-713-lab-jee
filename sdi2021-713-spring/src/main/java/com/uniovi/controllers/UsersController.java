@@ -20,7 +20,7 @@ public class UsersController {
 
     @Autowired
     private SecurityService securityService;
-    
+
     @Autowired
     private SignUpFormValidator signUpFormValidator;
 
@@ -61,13 +61,6 @@ public class UsersController {
 	return "user/edit";
     }
 
-    @RequestMapping(value = "/user/edit/{id}", method = RequestMethod.POST)
-    public String setEdit(Model model, @PathVariable Long id,
-	    @ModelAttribute User user) {
-	user.setId(id);
-	usersService.addUser(user);
-	return "redirect:/user/details/" + id;
-    }
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String signup(Model model) {
@@ -78,10 +71,10 @@ public class UsersController {
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public String signup(@Validated User user, BindingResult result) {
 	signUpFormValidator.validate(user, result);
-	if(result.hasErrors()) {
+	if (result.hasErrors()) {
 	    return "signup";
 	}
-	
+
 	usersService.addUser(user);
 	securityService.autoLogin(user.getDni(), user.getPasswordConfirm());
 	return "redirect:home";
@@ -101,5 +94,23 @@ public class UsersController {
 	User activeUser = usersService.getUserByDni(dni);
 	model.addAttribute("markList", activeUser.getMarks());
 	return "home";
+    }
+
+    @RequestMapping("/user/list/update")
+    public String updateList(Model model) {
+	model.addAttribute("usersList", usersService.getUsers());
+	return "user/list :: tableUsers";
+    }
+
+    @RequestMapping(value = "/user/edit/{id}", method = RequestMethod.POST)
+    public String setEdit(Model model, @PathVariable Long id,
+	    @ModelAttribute User user) {
+	User oldUser = usersService.getUser(id);
+	// no se actualiza la contraseña
+	oldUser.setDni(user.getDni());
+	oldUser.setName(user.getName());
+	oldUser.setLastName(user.getLastName());
+	usersService.addUser(oldUser);
+	return "redirect:/user/details/" + id;
     }
 }

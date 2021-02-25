@@ -25,7 +25,10 @@ public class UsersService {
     }
 
     public void addUser(User user) {
-	user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+	// no se debe actualizar la contraseña de usuario
+	if (user.getId() == 0) {
+	    user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+	}
 	usersRepository.save(user);
     }
 
@@ -36,4 +39,5 @@ public class UsersService {
     public void deleteUser(Long id) {
 	usersRepository.deleteById(id);
     }
+
 }
