@@ -8,6 +8,8 @@ import java.util.Set;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.uniovi.entities.Mark;
@@ -49,6 +51,17 @@ public class MarksService {
 
     public void deleteMark(Long id) {
 	marksRepository.deleteById(id);
+    }
+
+    public void setMarkResend(boolean revised, Long id) {
+	Authentication auth = SecurityContextHolder.getContext()
+		.getAuthentication();
+	String dni = auth.getName();
+	Mark mark = marksRepository.findById(id).get();
+	// solo si es el propietario
+	if (mark.getUser().getDni().equals(dni)) {
+	    marksRepository.updateResend(revised, id);
+	}
     }
 
 }

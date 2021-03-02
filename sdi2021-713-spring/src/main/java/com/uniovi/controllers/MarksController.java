@@ -8,10 +8,6 @@ import com.uniovi.entities.Mark;
 import com.uniovi.services.MarksService;
 import com.uniovi.services.UsersService;
 import com.uniovi.validators.MarkFormValidator;
-
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +33,6 @@ public class MarksController {
     @Autowired
     private MarkFormValidator markValidator;
 
-    @SuppressWarnings("unchecked")
     @RequestMapping("/mark/list")
     public String getList(Model model) {
 	model.addAttribute("markList", marksService.getMarks());
@@ -102,5 +97,17 @@ public class MarksController {
 	original.setDescription(mark.getDescription());
 	marksService.addMark(original);
 	return "redirect:/mark/details/" + id;
+    }
+
+    @RequestMapping(value = "/mark/{id}/resend", method = RequestMethod.GET)
+    public String setResendTrue(Model model, @PathVariable Long id) {
+	marksService.setMarkResend(true, id);
+	return "redirect:/mark/list";
+    }
+
+    @RequestMapping(value = "/mark/{id}/noresend", method = RequestMethod.GET)
+    public String setResendFalse(Model model, @PathVariable Long id) {
+	marksService.setMarkResend(false, id);
+	return "redirect:/mark/list";
     }
 }
