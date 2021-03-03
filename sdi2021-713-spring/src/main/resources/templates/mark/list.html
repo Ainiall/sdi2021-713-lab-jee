@@ -5,19 +5,21 @@
 	<!--Barra de Navegación superior -->
 	<nav th:replace="fragments/nav" />
 	<div class="container">
-		<h2>Notas</h2>
+		<h2 th:text="#{mark.title}">Notas</h2>
 
 		<form class="navbar-form" action="/mark/list">
 			<div class="form-group">
 				<input name="searchText" type="text" class="form-control" size="50"
 					placeholder="Buscar por descripción o nombre del alumno">
 			</div>
-			<button type="submit" class="btn btn-default">Buscar</button>
+			<button type="submit" class="btn btn-default" 
+				th:text="#{mark.search}">Buscar</button>
 		</form>
 
-		<p>Las notas que actualmente figuran en el sistema son las
+		<p th:text="#{mark.text}">Las notas que actualmente figuran en el sistema son las
 			siguientes:</p>
-		<button type="button" id="updateButton" class="btn btn-default">Actualizar
+		<button type="button" id="updateButton" class="btn btn-default"
+			th:text="#{mark.update}">Actualizar
 		</button>
 		
 		<script th:inline="javascript">
@@ -37,8 +39,8 @@
 				<thead>
 					<tr>
 						<th class="col-md-1">id</th>
-						<th>Descripción</th>
-						<th>Puntuación</th>
+						<th th:text="#{mark.desc}">Descripción</th>
+						<th th:text="#{mark.score}">Puntuación</th>
 						<th class="col-md-1"></th>
 						<th class="col-md-1"></th>
 						<th class="col-md-1"></th>
@@ -49,13 +51,13 @@
 						<td th:text="${mark.id}">1</td>
 						<td th:text="${mark.description}">Ejercicio 1</td>
 						<td th:text="${mark.score}">10</td>
-						<td><a th:href="${'/mark/details/' + mark.id}">detalles</a></td>
+						<td><a th:href="${'/mark/details/' + mark.id}" th:text="#{home.details}">detalles</a></td>
 						<td><a sec:authorize="hasRole('ROLE_PROFESSOR')"
-							th:href="${'/mark/edit/' + mark.id}">modificar</a>
+							th:href="${'/mark/edit/' + mark.id}" th:text="#{home.edit}">modificar</a>
 							<div sec:authorize="hasRole('ROLE_STUDENT')">
 								<div th:if="${mark.resend}">
 									<button type="button" th:id="${'resendButton' + mark.id}"
-										class="btn btn-info">Reenviar</button>
+										class="btn btn-info" th:text="#{mark.resend}">Reenviar</button>
 									<script th:inline="javascript">
 										/*<![CDATA[*/$(
 											"#resendButton[[${mark.id}]]")
@@ -74,7 +76,8 @@
 								</div>
 								<div th:unless="${mark.resend}">
 									<button type="button" th:id="${'noresendButton' + mark.id}"
-										class="btn btn-default">No reenviar</button>
+										class="btn btn-default" th:text="#{mark.noresend}">
+										No reenviar</button>
 									<script th:inline="javascript">
 										/*<![CDATA[*/$(
 											"#noresendButton[[${mark.id}]]")
@@ -93,7 +96,7 @@
 								</div>
 							</div></td>
 						<td><a sec:authorize="hasRole('ROLE_PROFESSOR')"
-							th:href="${'/mark/delete/' + mark.id}">eliminar</a></td>
+							th:href="${'/mark/delete/' + mark.id}" th:text="#{home.delete}">eliminar</a></td>
 					</tr>
 				</tbody>
 			</table>

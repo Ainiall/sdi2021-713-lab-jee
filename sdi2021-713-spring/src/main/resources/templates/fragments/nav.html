@@ -55,7 +55,7 @@
 								th:text="#{language.es}">Español</span>
 						</a></li>
 						<li><a id="btnFrench" value="FR"> <img
-								th:src="@{/img/if_spain_flag.png}"
+								th:src="@{/img/if_france_flag.png}"
 								style="border: 0; float: left; margin-right: 15px" /> <span
 								th:text="#{language.fr}">Francés</span>
 						</a></li>
@@ -69,7 +69,8 @@
 					th:text="#{login.message}"> <span
 						class="glyphicon glyphicon-log-in"> </span> Identifícate
 				</a></li>
-				<li sec:authorize="isAuthenticated()"><a href="/logout"> <span
+				<li sec:authorize="isAuthenticated()"><a href="/logout"
+					th:text="#{dc.message}"> <span
 						class="glyphicon glyphicon-log-out"></span> Desconectar
 				</a></li>
 			</ul>
