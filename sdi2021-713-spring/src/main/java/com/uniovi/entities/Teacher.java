@@ -11,6 +11,7 @@ public class Teacher {
     private String name;
     private String surname;
     private String category;
+    private String role;
 
     public Teacher() {
     }
@@ -71,4 +72,11 @@ public class Teacher {
 		+ ", category=" + category + "]";
     }
     
+    public String getRole() {
+	return role;
+    }
+
+    public void setRole(String role) {
+	this.role = role;
+    }
 }

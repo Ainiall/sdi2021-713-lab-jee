@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.uniovi.entities.Teacher;
+import com.uniovi.services.RolesService;
 import com.uniovi.services.TeachersService;
 import com.uniovi.validators.TeacherFormValidator;
 
@@ -22,6 +23,9 @@ public class TeachersController {
     
     @Autowired
     private TeacherFormValidator teacherValidator;
+    
+    @Autowired
+    private RolesService rolesService;
 
     @RequestMapping("/teacher/list")
     public String getList(Model model) {
@@ -31,7 +35,9 @@ public class TeachersController {
 
     @RequestMapping(value = "/teacher/add")
     public String getTeacher(Model model) {
-	model.addAttribute("teacher", new Teacher());
+	Teacher t= new Teacher();
+	model.addAttribute("teacher", t);
+	t.setRole(rolesService.getRoles()[1]);
 	return "teacher/add";
     }
 

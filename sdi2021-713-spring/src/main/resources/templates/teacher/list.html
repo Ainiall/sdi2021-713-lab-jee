@@ -6,7 +6,7 @@
 <body>
 
 	<!-- Barra de Navegación superior -->
-	<nav   th:replace="fragments/teacher/nav"/> 
+	<nav   th:replace="fragments/nav"/> 
 
 	<div class="container">
 		<h2>Profesores</h2>
@@ -31,8 +31,24 @@
 						<td th:text="${teacher.name}"></td>
 						<td th:text="${teacher.surname}"></td>
 						<td th:text="${teacher.category}"></td>
-						<td><a th:href="${'/teacher/delete/' + teacher.id}">🗑️ Borrar</a></td>
-						<td><a th:href="${'/teacher/edit/'+ teacher.id}">✏️ Editar</a></td>
+						<td>
+    						<a sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_PROFESSOR')" 
+        						th:href="${'/teacher/details/' + teacher.id}" th:text="#{home.details}">
+        							detalles
+    						</a>
+						</td>
+						<td>
+    						<a sec:authorize="hasRole('ROLE_ADMIN')" 
+        						th:href="${'/teacher/edit/' + teacher.id}" th:text="#{home.edit}">
+        						editar
+    						</a>
+						</td>
+						<td>
+						    <a sec:authorize="hasRole('ROLE_ADMIN')" 
+						        th:href="${'/teacher/delete/' + teacher.id}" th:text="#{home.delete}">
+						        eliminar
+						    </a>
+						</td>
 					</tr>
 				</tbody>
 			</table>
