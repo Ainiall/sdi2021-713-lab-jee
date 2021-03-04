@@ -14,6 +14,15 @@
 			});
 		</script>
 
+	<form class="navbar-form" action="/user/list">
+	    <div class="form-group">
+	        <input name="searchText" type="text" class="form-control" size="50"
+	            placeholder="Buscar por nombre o apellido del usuario">
+	    </div>
+	    <button type="submit" class="btn btn-default" 
+	        th:text="#{mark.search}">Buscar</button>
+	</form>
+
 	<div class="table-responsive">
 		<table class="table table-hover" th:fragment="tableUsers"
 				id="tableUsers">

@@ -1,6 +1,8 @@
 package com.uniovi.controllers;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.data.domain.Page;
@@ -38,8 +40,16 @@ public class UsersController {
     private RolesService rolesService;
 
     @RequestMapping("/user/list")
-    public String getListado(Model model) {
-	model.addAttribute("usersList", usersService.getUsers());
+    public String getListado(Model model, 
+	    @RequestParam(value = "", required = false) String searchText) {
+	List<User> users = new ArrayList<User>();
+	if (searchText != null && !searchText.isEmpty()) {
+	    users = usersService.searchByNameAndLastname(searchText);
+	} else {
+	    users = usersService.getUsers();
+	}
+	    
+	model.addAttribute("usersList", users);
 	return "user/list";
     }
 
