@@ -40,10 +40,31 @@ public class InsertSampleDataService {
 	User user6 = new User("99999988F", "Edward", "Núñez");
 	user6.setPassword("123456");
 	user6.setRole(rolesService.getRoles()[2]);
-	
-	Teacher teacher1 = new Teacher(1L, "12345678z", "John", "Doe", "English");
-	Teacher teacher2 = new Teacher(2L, "87654321a", "Jane", "Doe", "Spanish");
 
+	User user7 = new User("11111111A", "María", "González");
+	user7.setPassword("123456");
+	user7.setRole(rolesService.getRoles()[0]);
+	User user8 = new User("22222222B", "Sandra", "Fernández");
+	user8.setPassword("123456");
+	user8.setRole(rolesService.getRoles()[0]);
+	User user9 = new User("33333333C", "Pablo", "Miranda");
+	user9.setPassword("123456");
+	user9.setRole(rolesService.getRoles()[0]);
+	User user10 = new User("44444444D", "Carlos", "Gómez");
+	user10.setPassword("123456");
+	user10.setRole(rolesService.getRoles()[0]);
+	User user11 = new User("55555555E", "Lucía", "Gutiérrez");
+	user11.setPassword("123456");
+	user11.setRole(rolesService.getRoles()[0]);
+	
+	Teacher teacher1 = new Teacher(1L, "12345678z", "John", "Doe", "Inglés");
+	Teacher teacher2 = new Teacher(2L, "87654321a", "Jane", "Doe", "Español");
+	Teacher teacher3 = new Teacher(2L, "12345671a", "Sarah", "Smith", "Ciencias");
+	Teacher teacher4 = new Teacher(2L, "12345672b", "Dylan", "Lee", "Educación física");
+	Teacher teacher5 = new Teacher(2L, "12345673c", "Marco", "Johnson", "Filosofía");
+	Teacher teacher6 = new Teacher(2L, "12345674d", "Cynthia", "Dixon", "Física");
+	Teacher teacher7 = new Teacher(2L, "12345675e", "Samara", "Hilton", "Química");
+	
 	
 	Set user1Marks = new HashSet<Mark>() {
 	    {
@@ -86,8 +107,18 @@ public class InsertSampleDataService {
 	usersService.addUser(user4);
 	usersService.addUser(user5);
 	usersService.addUser(user6);
+	usersService.addUser(user7);
+	usersService.addUser(user8);
+	usersService.addUser(user9);
+	usersService.addUser(user10);
+	usersService.addUser(user11);
 	
 	teachersService.addTeacher(teacher1);
 	teachersService.addTeacher(teacher2);
+	teachersService.addTeacher(teacher3);
+	teachersService.addTeacher(teacher4);
+	teachersService.addTeacher(teacher5);
+	teachersService.addTeacher(teacher6);
+	teachersService.addTeacher(teacher7);
     }
 }

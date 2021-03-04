@@ -40,16 +40,18 @@ public class UsersController {
     private RolesService rolesService;
 
     @RequestMapping("/user/list")
-    public String getListado(Model model, 
+    public String getListado(Model model, Pageable pageable,
 	    @RequestParam(value = "", required = false) String searchText) {
-	List<User> users = new ArrayList<User>();
+	Page<User> users = new PageImpl<User>(new LinkedList<User>());
+
 	if (searchText != null && !searchText.isEmpty()) {
-	    users = usersService.searchByNameAndLastname(searchText);
+	    users = usersService.searchByNameAndLastname(pageable, searchText);
 	} else {
-	    users = usersService.getUsers();
+	    users = usersService.getUsers(pageable);
 	}
 	    
-	model.addAttribute("usersList", users);
+	model.addAttribute("usersList", users.getContent());
+	model.addAttribute("page", users);
 	return "user/list";
     }
 

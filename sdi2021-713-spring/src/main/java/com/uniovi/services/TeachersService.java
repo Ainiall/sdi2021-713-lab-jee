@@ -3,6 +3,8 @@ package com.uniovi.services;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.uniovi.entities.Teacher;
@@ -36,5 +38,10 @@ public class TeachersService {
 
     public Teacher getTeacherByDNI(String dni) {
 	return teachersRepository.findByDNI(dni);
+    }
+
+    public Page<Teacher> getTeachers(Pageable pageable) {
+	Page<Teacher> teachersList = teachersRepository.findAll(pageable);
+	return teachersList;
     }
 }

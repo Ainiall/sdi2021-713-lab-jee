@@ -1,6 +1,12 @@
 package com.uniovi.controllers;
 
+import java.security.Principal;
+import java.util.LinkedList;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,7 +16,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.uniovi.entities.Mark;
 import com.uniovi.entities.Teacher;
+import com.uniovi.entities.User;
 import com.uniovi.services.RolesService;
 import com.uniovi.services.TeachersService;
 import com.uniovi.validators.TeacherFormValidator;
@@ -28,8 +36,10 @@ public class TeachersController {
     private RolesService rolesService;
 
     @RequestMapping("/teacher/list")
-    public String getList(Model model) {
-	model.addAttribute("teacherList", teachersService.getTeachers());
+    public String getList(Model model, Pageable pageable) {
+	Page<Teacher> teachers = teachersService.getTeachers(pageable);
+	model.addAttribute("teacherList", teachers.getContent());
+	model.addAttribute("page", teachers);
 	return "teacher/list";
     }
 
