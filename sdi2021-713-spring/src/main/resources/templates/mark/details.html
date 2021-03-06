@@ -8,17 +8,18 @@
 		<h2 th:text="#{mark.details}">Detalles de la nota</h2>
 
 		<div class="panel panel-default">
-			<div class="panel-heading">DNI</div>
+			<div class="panel-heading" th:text="#{dni}">DNI</div>
 			<div class="panel-body" th:text="${mark.user.dni}">28276</div>
 		</div>
 
 		<div class="panel panel-default">
-			<div class="panel-heading" th:text="#{mark.desc}">Descripción</div>
+			<div class="panel-heading" th:text="#{desc}">Descripción</div>
 			<div class="panel-body" th:text="${mark.description}">
-				Ejercicio 1</div>
+				Ejercicio 1
+			</div>
 		</div>
 		<div class="panel panel-default">
-			<div class="panel-heading" th:text="#{mark.score}">Puntuación</div>
+			<div class="panel-heading" th:text="#{score}">Puntuación</div>
 			<div class="panel-body" th:text="${mark.score}">100</div>
 		</div>
 	</div>

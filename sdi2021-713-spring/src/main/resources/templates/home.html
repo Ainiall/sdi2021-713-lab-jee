@@ -4,7 +4,7 @@
 <body>
 	<nav th:replace="fragments/nav" />
 	<div class="container" style="text-align: center">
-		<h2 th:text="#{welcome.message}"></h2>
+		<h2 th:text="#{index.title}"></h2>
 		<h3 th:text="#{home.title}">Esta es una zona privada la web</h3>
 
 		<p>
@@ -15,7 +15,7 @@
 		<p th:text="#{home.mark}">Notas del usuario</p>
 		
 		<button type="button" id="updateButton" class="btn btn-default"
-			th:text="#{mark.update}">Actualizar
+			th:text="#{update}">Actualizar
 		</button>
 		
 		<script th:inline="javascript">
@@ -30,7 +30,7 @@
 			});/*]]>*/</script>
 
 		<div th:replace="fragments/markList" th:fragment="tableMarks"
-	    id="tableMarks"/>
+	    	id="tableMarks"/>
  		<footer th:replace ="fragments/pagination"/>
 	</div>
 	<footer th:replace="fragments/footer" />

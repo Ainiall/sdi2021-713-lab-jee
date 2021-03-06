@@ -58,15 +58,23 @@ public class InsertSampleDataService {
 	user11.setRole(rolesService.getRoles()[0]);
 	
 	Teacher teacher1 = new Teacher(1L, "12345678z", "John", "Doe", "Inglés");
+	teacher1.setRole(rolesService.getRoles()[1]);
 	Teacher teacher2 = new Teacher(2L, "87654321a", "Jane", "Doe", "Español");
+	teacher2.setRole(rolesService.getRoles()[1]);
 	Teacher teacher3 = new Teacher(2L, "12345671a", "Sarah", "Smith", "Ciencias");
+	teacher3.setRole(rolesService.getRoles()[1]);
 	Teacher teacher4 = new Teacher(2L, "12345672b", "Dylan", "Lee", "Educación física");
+	teacher4.setRole(rolesService.getRoles()[1]);
 	Teacher teacher5 = new Teacher(2L, "12345673c", "Marco", "Johnson", "Filosofía");
+	teacher5.setRole(rolesService.getRoles()[1]);
 	Teacher teacher6 = new Teacher(2L, "12345674d", "Cynthia", "Dixon", "Física");
+	teacher6.setRole(rolesService.getRoles()[1]);
 	Teacher teacher7 = new Teacher(2L, "12345675e", "Samara", "Hilton", "Química");
+	teacher7.setRole(rolesService.getRoles()[1]);
 	
 	
-	Set user1Marks = new HashSet<Mark>() {
+	@SuppressWarnings("serial")
+	Set<Mark> user1Marks = new HashSet<Mark>() {
 	    {
 		add(new Mark("Nota A1", 10.0, user1));
 		add(new Mark("Nota A2", 9.0, user1));
@@ -75,7 +83,8 @@ public class InsertSampleDataService {
 	    }
 	};
 	user1.setMarks(user1Marks);
-	Set user2Marks = new HashSet<Mark>() {
+	@SuppressWarnings("serial")
+	Set<Mark> user2Marks = new HashSet<Mark>() {
 	    {
 		add(new Mark("Nota B1", 5.0, user2));
 		add(new Mark("Nota B2", 4.3, user2));
@@ -84,7 +93,8 @@ public class InsertSampleDataService {
 	    }
 	};
 	user2.setMarks(user2Marks);
-	Set user3Marks = new HashSet<Mark>() {
+	@SuppressWarnings("serial")
+	Set<Mark> user3Marks = new HashSet<Mark>() {
 	    {
 		;
 		add(new Mark("Nota C1", 5.5, user3));
@@ -93,13 +103,15 @@ public class InsertSampleDataService {
 	    }
 	};
 	user3.setMarks(user3Marks);
-	Set user4Marks = new HashSet<Mark>() {
+	@SuppressWarnings("serial")
+	Set<Mark> user4Marks = new HashSet<Mark>() {
 	    {
 		add(new Mark("Nota D1", 10.0, user4));
 		add(new Mark("Nota D2", 8.0, user4));
 		add(new Mark("Nota D3", 9.0, user4));
 	    }
 	};
+	
 	user4.setMarks(user4Marks);
 	usersService.addUser(user1);
 	usersService.addUser(user2);

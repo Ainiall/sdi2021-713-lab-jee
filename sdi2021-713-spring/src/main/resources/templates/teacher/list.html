@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head th:replace="fragments/teacher/head"/> 
+<head th:replace="fragments/head"/> 
 
 <body>
 
@@ -9,17 +9,17 @@
 	<nav   th:replace="fragments/nav"/> 
 
 	<div class="container">
-		<h2>Profesores</h2>
-		<p>Los profesores que actualmente figuran en el sistema son las
+		<h2 th:text="#{teacher.title}">Profesores</h2>
+		<p th:text="#{teacher.text}">Los profesores que actualmente figuran en el sistema son las
 			siguientes:</p>
 		<div class="table-responsive">
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th>DNI:</th>
-						<th>Nombre:</th>
-						<th>Apellido:</th>
-						<th>Categoria:</th>
+						<th th:text="#{dni}">DNI:</th>
+						<th th:text="#{name}">Nombre:</th>
+						<th th:text="#{surname}">Apellido:</th>
+						<th th:text="#{category}">Categoria:</th>
 						<th class="col-md-1"></th>
 						<th class="col-md-1"></th>
 						<th class="col-md-1"></th>
@@ -33,19 +33,19 @@
 						<td th:text="${teacher.category}"></td>
 						<td>
     						<a sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_PROFESSOR')" 
-        						th:href="${'/teacher/details/' + teacher.id}" th:text="#{home.details}">
-        							detalles
+        						th:href="${'/teacher/details/' + teacher.id}" th:text="#{details}">
+        						detalles
     						</a>
 						</td>
 						<td>
     						<a sec:authorize="hasRole('ROLE_ADMIN')" 
-        						th:href="${'/teacher/edit/' + teacher.id}" th:text="#{home.edit}">
+        						th:href="${'/teacher/edit/' + teacher.id}" th:text="#{edit}">
         						editar
     						</a>
 						</td>
 						<td>
 						    <a sec:authorize="hasRole('ROLE_ADMIN')" 
-						        th:href="${'/teacher/delete/' + teacher.id}" th:text="#{home.delete}">
+						        th:href="${'/teacher/delete/' + teacher.id}" th:text="#{delete}">
 						        eliminar
 						    </a>
 						</td>

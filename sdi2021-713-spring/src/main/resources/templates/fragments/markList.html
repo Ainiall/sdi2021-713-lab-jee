@@ -4,8 +4,8 @@
 	    <thead>
 			<tr>
 				<th class="col-md-1">id</th>
-				<th th:text="#{mark.desc}">Descripción</th>
-				<th th:text="#{mark.score}">Puntuación</th>
+				<th th:text="#{desc}">Descripción</th>
+				<th th:text="#{score}">Puntuación</th>
 				<th class="col-md-1"></th>
 				<th class="col-md-1"></th>
 				<th class="col-md-1"></th>
@@ -16,13 +16,22 @@
 				<td th:text="${mark.id}">1</td>
 				<td th:text="${mark.description}">Ejercicio 1</td>
 				<td th:text="${mark.score}">10</td>
-				<td><a th:href="${'/mark/details/' + mark.id}" th:text="#{home.details}">detalles</a></td>
-				<td><a sec:authorize="hasRole('ROLE_PROFESSOR')"
-					th:href="${'/mark/edit/' + mark.id}" th:text="#{home.edit}">modificar</a>
+				<td>
+					<a th:href="${'/mark/details/' + mark.id}" th:text="#{details}">
+						detalles
+					</a>
+				</td>
+				<td>
+					<a sec:authorize="hasRole('ROLE_PROFESSOR')"
+						th:href="${'/mark/edit/' + mark.id}" th:text="#{edit}">
+						modificar
+					</a>
 					<div sec:authorize="hasRole('ROLE_STUDENT')">
                         <div th:if="${mark.resend}">
                             <button type="button" th:id="${'resendButton' + mark.id}"
-                                class="btn btn-info" th:text="#{mark.resend}">Reenviar</button>
+                                class="btn btn-info" th:text="#{mark.resend}">
+                                Reenviar
+                            </button>
                             <script th:inline="javascript">
                                 /*<![CDATA[*/
                                     $("#resendButton[[${mark.id}]]")
@@ -41,7 +50,9 @@
                         </div>
                         <div th:unless="${mark.resend}">
                             <button type="button" th:id="${'noresendButton' + mark.id}"
-                                class="btn btn-default" th:text="#{mark.noresend}">No reenviar</button>
+                                class="btn btn-default" th:text="#{mark.noresend}">
+                                No reenviar
+                            </button>
                             <script th:inline="javascript">
                                 /*<![CDATA[*/$(
                                     "#noresendButton[[${mark.id}]]")
@@ -60,8 +71,11 @@
                         </div>
 				    </div>
                 </td>
-				<td><a sec:authorize="hasRole('ROLE_PROFESSOR')"
-					    th:href="${'/mark/delete/' + mark.id}" th:text="#{home.delete}">eliminar</a>
+				<td>
+					<a sec:authorize="hasRole('ROLE_PROFESSOR')"
+					    th:href="${'/mark/delete/' + mark.id}" th:text="#{delete}">
+					    eliminar
+					</a>
                 </td>
 			</tr>
 		</tbody>

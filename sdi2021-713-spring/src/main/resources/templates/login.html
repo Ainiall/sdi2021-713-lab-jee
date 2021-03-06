@@ -4,22 +4,22 @@
 <body>
 	<nav th:replace="fragments/nav"/>
 	<div class="container">
-		<h2 th:text="#{login.title}">Idéntificate</h2>
+		<h2 th:text="#{nav.login}">Idéntificate</h2>
 		<form class="form-horizontal" method="post" action="/login">
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="username"
-				 	th:text="#{login.DNI}">DNI:</label>
+				 	th:text="#{dni}">DNI:</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="username" 
-					placeholder="Ejemplo: profSDI" required="true"/>
+						placeholder="12345678A" required="true"/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="username" 
-					th:text="#{login.pass}">Password:</label>
+					th:text="#{pass}">Password:</label>
 				<div class="col-sm-10">
 					<input type="password" class="form-control" name="password" 
-					placeholder="Entre el Password" required="true"/>
+						placeholder="***********" required="true"/>
 				</div>
 			</div>
 			<div class="form-group">

@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head th:replace="fragments/teacher/head"/> 
+<head th:replace="fragments/head"/> 
 
 <body>
 
 	<!-- Barra de Navegación superior -->
-	<nav   th:replace="fragments/nav"/> 
+	<nav th:replace="fragments/nav"/> 
 
 	<div class="container">
-		<h2>Detalles del profesor</h2>
+		<h2 th:text="#{teacher.details}">Detalles del profesor</h2>
 		<div class="panel panel-default">
-			<div class="panel-heading">DNI: </div>
+			<div class="panel-heading" th:text="#{dni}">DNI: </div>
 			<div class="panel-body" th:text="${teacher.DNI}"></div>
 		</div>
 		<div class="panel panel-default">
-			<div class="panel-heading">Nombre: </div>
+			<div class="panel-heading" th:text="#{name}">Nombre: </div>
 			<div class="panel-body" th:text="${teacher.name}"></div>
 		</div>
 		<div class="panel panel-default">
-			<div class="panel-heading">Apellido: </div>
+			<div class="panel-heading" th:text="#{surname}">Apellido: </div>
 			<div class="panel-body" th:text="${teacher.surname}"></div>
 		</div>
 		<div class="panel panel-default">
-			<div class="panel-heading">Categoria: </div>
+			<div class="panel-heading" th:text="#{category}">Categoria: </div>
 			<div class="panel-body" th:text="${teacher.category}"></div>
 		</div>
 	</div>
