@@ -1,12 +1,16 @@
 package com.uniovi.tests;
 
-import static org.junit.Assert.*;
-
-import org.junit.*;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.FixMethodOrder;
+import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-
 import com.uniovi.tests.pageobjects.PO_HomeView;
+import com.uniovi.tests.pageobjects.PO_LoginView;
 import com.uniovi.tests.pageobjects.PO_Properties;
 import com.uniovi.tests.pageobjects.PO_RegisterView;
 import com.uniovi.tests.pageobjects.PO_View;
@@ -141,40 +145,82 @@ public class NotaneitorTests {
 	// Comprobamos el error de Apellido corto.
 	PO_RegisterView.checkKey(driver, "Error.signup.lastName.length",
 		PO_Properties.getSPANISH());
-	
+
 	// Rellenamos el formulario.
 	PO_RegisterView.fillForm(driver, "12345678B", "Jose", "Perez", "123",
 		"77777");
 	// Comprobamos el error de Password corta.
 	PO_RegisterView.checkKey(driver, "Error.signup.password.length",
 		PO_Properties.getSPANISH());
-	
+
 	// Rellenamos el formulario.
-	PO_RegisterView.fillForm(driver, "12345678B", "Jose", "Perez", "1234567",
-		"77777");
+	PO_RegisterView.fillForm(driver, "12345678B", "Jose", "Perez",
+		"1234567", "77777");
 	// Comprobamos el error de passwords distintas.
-	PO_RegisterView.checkKey(driver, "Error.signup.passwordConfirm.coincidence",
+	PO_RegisterView.checkKey(driver,
+		"Error.signup.passwordConfirm.coincidence",
 		PO_Properties.getSPANISH());
     }
 
+    // PR07. Loguearse con éxito desde el Rol de Usuario, 99999990A, 123456
     @Test
     public void PR07() {
+	// Vamos al formulario de inicio de sesión
+	PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+	// Rellenamos el formulario.
+	PO_LoginView.fillForm(driver, "99999990A", "123456");
+	// Comprobamos que entramos en la pagina privada de Alumno
+	PO_View.checkElement(driver, "text", "Notas del usuario");
     }
 
+    // PR08. Loguearse con éxito desde el Rol de Profesor, 99999993D, 123456
     @Test
     public void PR08() {
+	// Vamos al formulario de inicio de sesión
+	PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+	// Rellenamos el formulario.
+	PO_LoginView.fillForm(driver, "99999993D", "123456");
+	// Comprobamos que entramos en la pagina privada de Profesor
+	PO_View.checkElement(driver, "text", "Gestión de notas");
     }
 
+    // PR09. Loguearse con éxito desde el Rol de Administrador, 99999993D,
+    // 123456
     @Test
     public void PR09() {
+	// Vamos al formulario de inicio de sesión
+	PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+	// Rellenamos el formulario.
+	PO_LoginView.fillForm(driver, "99999988F", "123456");
+	// Comprobamos que entramos en la pagina privada de Administrador
+	PO_View.checkElement(driver, "text", "Gestión de notas");
     }
 
-    @Test
+    // PR010. Loguearse sin éxito desde el Rol de Alumno, 99999990A, 123456
+    @Test(expected = org.openqa.selenium.TimeoutException.class)
     public void PR10() {
+	// Vamos al formulario de inicio de sesión
+	PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+	// Rellenamos el formulario
+	PO_LoginView.fillForm(driver, "99999990A", "12345678");
+	// Comprobamos que no entramos en la pagina privada de Alumno
+	PO_View.checkElement(driver, "text", "Notas del usuario");
     }
 
-    @Test
+    // PR011. Loguearse con éxito desde el Rol de Alumno, 99999990A, 123456
+    // Desconectarse con exito
+    @Test(expected = org.openqa.selenium.TimeoutException.class)
     public void PR11() {
+	// Vamos al formulario de inicio de sesión
+	PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+	// Rellenamos el formulario.
+	PO_LoginView.fillForm(driver, "99999990A", "123456");
+	// Comprobamos que entramos en la pagina privada de Alumno
+	PO_View.checkElement(driver, "text", "Notas del usuario");
+	// Pulsamos sobre desconectar
+	PO_HomeView.clickOption(driver, "logout", "class", "btn btn-primary");
+	// Vemos la página principal
+	PO_HomeView.checkWelcome(driver, PO_Properties.getSPANISH());
     }
 
     @Test

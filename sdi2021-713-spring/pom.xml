@@ -60,6 +60,20 @@
 			<version>3.0.4.RELEASE</version>
 		</dependency>
 
+		<!-- junit 4 -->
+	    <dependency><!-- already contains junit:4.12 dependency, so we are not going to add it explicitly! -->
+	      <groupId>org.jetbrains.kotlin</groupId>
+	      <artifactId>kotlin-test-junit</artifactId>
+	      <version>${kotlin.version}</version>
+	      <scope>test</scope>
+	    </dependency>
+	    <dependency><!-- vintage engine is required if you wanna execute JUnit 4 together with JUnit 5 Jupiter tests... -->
+	      <groupId>org.junit.vintage</groupId>
+	      <artifactId>junit-vintage-engine</artifactId>
+	      <version>${junit-jupiter.version}</version>
+	      <scope>test</scope>
+	    </dependency>
+		
 	</dependencies>
 
 	<build>
