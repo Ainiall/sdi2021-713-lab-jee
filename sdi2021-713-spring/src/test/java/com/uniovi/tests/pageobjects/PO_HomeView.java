@@ -1,8 +1,5 @@
 package com.uniovi.tests.pageobjects;
 
-import static org.junit.Assert.*;
-
-import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 
 import com.uniovi.tests.util.SeleniumUtils;
